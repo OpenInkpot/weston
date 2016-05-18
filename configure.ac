@@ -383,7 +383,13 @@ AM_CONDITIONAL(BUILD_FULL_GL_CLIENTS,
 AM_CONDITIONAL(BUILD_SUBSURFACES_CLIENT,
 	       [test '(' "x$have_cairo_egl" != "xyes" -o "x$cairo_modules" = "xcairo-glesv2" ')' -a "x$enable_simple_egl_clients" = "xyes"])
 
-AM_CONDITIONAL(ENABLE_DESKTOP_SHELL, true)
+AC_ARG_ENABLE(desktop-shell,
+              AS_HELP_STRING([--disable-desktop-shell],
+                             [do not build desktop-shell server plugin]),,
+	      enable_desktop_shell=yes)
+
+AM_CONDITIONAL(ENABLE_DESKTOP_SHELL,
+	       test "x$enable_desktop_shell" = "xyes")
 
 AC_ARG_ENABLE(fullscreen-shell,
               AS_HELP_STRING([--disable-fullscreen-shell],
@@ -523,6 +529,7 @@ AC_MSG_RESULT([
 	dbus				${enable_dbus}
 
 	Build wcap utility		${enable_wcap_tools}
+	Build Desktop Shell		${enable_desktop_shell}
 	Build Fullscreen Shell		${enable_fullscreen_shell}
 
 	weston-launch utility		${enable_weston_launch}
