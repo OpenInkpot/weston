@@ -700,6 +700,28 @@ nodist_fullscreen_shell_la_SOURCES =			\
 BUILT_SOURCES += $(nodist_fullscreen_shell_la_SOURCES)
 endif
 
+if ENABLE_EINK_SHELL
+module_LTLIBRARIES += eink-shell.la
+
+eink_shell_la_CPPFLAGS =			\
+	-I$(top_builddir)/protocol		\
+	-I$(top_srcdir)/shared			\
+	-I$(top_srcdir)/src			\
+	-I$(top_builddir)/src			\
+	-DIN_WESTON
+
+eink_shell_la_LDFLAGS = -module -avoid-version
+eink_shell_la_LIBADD = $(COMPOSITOR_LIBS)
+eink_shell_la_CFLAGS = $(GCC_CFLAGS) $(COMPOSITOR_CFLAGS)
+eink_shell_la_SOURCES =			\
+	eink-shell/shell.c
+nodist_eink_shell_la_SOURCES =			\
+	protocol/xdg-shell-protocol.c			\
+	protocol/xdg-shell-server-protocol.h
+
+BUILT_SOURCES += $(nodist_eink_shell_la_SOURCES)
+endif
+
 if ENABLE_SCREEN_SHARING
 
 module_LTLIBRARIES += screen-share.la

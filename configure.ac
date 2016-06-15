@@ -398,6 +398,14 @@ AC_ARG_ENABLE(fullscreen-shell,
 AM_CONDITIONAL(ENABLE_FULLSCREEN_SHELL,
 	       test "x$enable_fullscreen_shell" = "xyes")
 
+AC_ARG_ENABLE(eink-shell,
+              AS_HELP_STRING([--disable-eink-shell],
+                             [do not build eink-shell server plugin]),,
+	      enable_eink_shell=yes)
+
+AM_CONDITIONAL(ENABLE_EINK_SHELL,
+	       test "x$enable_eink_shell" = "xyes")
+
 # CMS modules
 AC_ARG_ENABLE(colord,
               AS_HELP_STRING([--disable-colord],
@@ -531,6 +539,7 @@ AC_MSG_RESULT([
 	Build wcap utility		${enable_wcap_tools}
 	Build Desktop Shell		${enable_desktop_shell}
 	Build Fullscreen Shell		${enable_fullscreen_shell}
+	Build E-Ink Shell		${enable_eink_shell}
 
 	weston-launch utility		${enable_weston_launch}
 	systemd-login support		${have_systemd_login}

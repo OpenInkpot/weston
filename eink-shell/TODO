@@ -1,0 +1,9 @@
+* dispose of tmp_listener hack
+* implement xdg/shell interface callbacks
+* subsurface(s) support
+* rotation/scalng support
+* fullscreen support
+* panel(s) support
+* touch support
+* performance improvements
+* refactor
